@@ -1,5 +1,9 @@
 # Parsing
 
+## Ссылка на выгруженную ДБ
+
+https://docs.google.com/spreadsheets/d/1fr9Duy_ncCiSn6SJqAE2dpBNgcpmtHE6PGuwSgKAOT4/edit?usp=sharing
+
 ## Использование
 
 Для запуска проекта локально выполните следующие шаги:
