@@ -32,17 +32,17 @@ class Parsing extends Command
         'http://89.108.115.241:6969/api/incomes' => [
             'model' => Income::class,
             'request' => IncomeRequest::class,
-            'dateFrom' => '2000-01-01'
+            'dateFrom' => '2025-01-01'
         ],
         'http://89.108.115.241:6969/api/orders' => [
             'model' => Order::class,
             'request' => OrderRequest::class,
-            'dateFrom' => '2000-01-01'
+            'dateFrom' => '2025-01-01'
         ],
         'http://89.108.115.241:6969/api/sales' => [
             'model' => Sale::class,
             'request' => SaleRequest::class,
-            'dateFrom' => '2000-01-01'
+            'dateFrom' => '2025-01-01'
         ],
 
     ];
@@ -79,7 +79,8 @@ class Parsing extends Command
     }
 
     public function getData($url, $page , $dateFrom, $dateTo)
-    {   do{
+    {
+        do{
                 $response = Http::get($url, [
                     'dateFrom' => $dateFrom,
                     'dateTo' => $dateTo,
@@ -87,6 +88,11 @@ class Parsing extends Command
                     'key' => $this->key,
                     'limit' => 500
                 ]);
+
+                if ($response->status() != 200)
+                {
+                    dump($response->status());
+                }
         }
         while ($response->status() != 200);
         return $response->json();
