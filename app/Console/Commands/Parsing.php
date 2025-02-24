@@ -79,7 +79,6 @@ class Parsing extends Command
             }
             $this->line('Parsing data finished');
         }
-
     }
 
     public function getData($url, $page , $dateFrom, $dateTo)
@@ -93,8 +92,10 @@ class Parsing extends Command
                 'limit' => 500
             ]);
 
-            $this->line("API request made to: {$url}");
-            $this->line("Response status: {$response->status()}");
+            if ($response->status() != 200) {
+                $this->line("API request made to: {$url}");
+                $this->line("Response status: {$response->status()}");
+            }
         }
         while ($response->status() != 200);
         return $response->json();

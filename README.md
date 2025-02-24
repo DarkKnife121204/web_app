@@ -34,7 +34,11 @@
     ```bash
     docker exec -it laravel_app php artisan queue:work
     ```
-10. В новом окне запустите команду для парсеринга 
+10. Запустите обработчик планирования:
+    ```bash
+    docker exec -it laravel_app php artisan schedule:work
+    ```
+11. В новом окне запустите команду для парсеринга 
     ```bash
     docker exec -it laravel_app php artisan parsing
     ```
