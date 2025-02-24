@@ -1,9 +1,5 @@
 # Parsing
 
-## Ссылка на выгруженную ДБ
-
-https://docs.google.com/spreadsheets/d/1fr9Duy_ncCiSn6SJqAE2dpBNgcpmtHE6PGuwSgKAOT4/edit?usp=sharing
-
 ## Использование
 
 Для запуска проекта локально выполните следующие шаги:
@@ -42,3 +38,16 @@ https://docs.google.com/spreadsheets/d/1fr9Duy_ncCiSn6SJqAE2dpBNgcpmtHE6PGuwSgKA
     ```bash
     docker exec -it laravel_app php artisan parsing
     ```
+## Информация
+
+1. Ссылка на выгруженную ДБ
+
+https://docs.google.com/spreadsheets/d/1fr9Duy_ncCiSn6SJqAE2dpBNgcpmtHE6PGuwSgKAOT4/edit?usp=sharing
+
+2. Данные для подключения в Navicat.
+```
+Хост: localhost
+Порт: 3307
+Логин: laravel_user
+Пароль: secret
+```
