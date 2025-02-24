@@ -22,20 +22,23 @@ https://docs.google.com/spreadsheets/d/1fr9Duy_ncCiSn6SJqAE2dpBNgcpmtHE6PGuwSgKA
    
 4. Файл .env.example переименуйте в .env
 5. Запустите Docker
-6. В wsl терминале запустите команду:
+6. В терминале запустите команду:
     ```bash
-    ./vendor/bin/sail build
-    ./vendor/bin/sail up -d
+    docker-compose build
     ```
-7. Выполните миграцию
+7. Запустите контейнеры
     ```bash
-    ./vendor/bin/sail artisan migrate:fresh
+    docker-compose up -d
     ```
-8. Запустите обработчик очереди:
+8. Выполните миграцию:
     ```bash
-    ./vendor/bin/sail artisan queue:work
+    docker exec -it laravel_app php artisan migrate:fresh
     ```
-9. В новом окне wsl запустите команду для парсеринга 
+9. Запустите обработчик очереди:
     ```bash
-    ./vendor/bin/sail artisan parsing
+    docker exec -it laravel_app php artisan queue:work
+    ```
+10. В новом окне запустите команду для парсеринга 
+    ```bash
+    docker exec -it laravel_app php artisan parsing
     ```
