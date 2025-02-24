@@ -9,4 +9,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN docker-php-ext-install pdo_mysql
 
+ENV PHP_MEMORY_LIMIT=128M
+
 WORKDIR /var/www/html

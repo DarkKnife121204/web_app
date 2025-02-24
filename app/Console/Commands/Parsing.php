@@ -32,17 +32,17 @@ class Parsing extends Command
         'http://89.108.115.241:6969/api/incomes' => [
             'model' => Income::class,
             'request' => IncomeRequest::class,
-            'dateFrom' => '2025-01-01'
+            'dateFrom' => '2000-01-01'
         ],
         'http://89.108.115.241:6969/api/orders' => [
             'model' => Order::class,
             'request' => OrderRequest::class,
-            'dateFrom' => '2025-01-01'
+            'dateFrom' => '2000-01-01'
         ],
         'http://89.108.115.241:6969/api/sales' => [
             'model' => Sale::class,
             'request' => SaleRequest::class,
-            'dateFrom' => '2025-01-01'
+            'dateFrom' => '2000-01-01'
         ],
 
     ];
@@ -55,8 +55,11 @@ class Parsing extends Command
 
     public function handle()
     {
+        $this->line('Parsing data from API, starting data parsing process');
+
         foreach ($this->api as $url => $config)
         {
+            $this->line('Processing API endpoint:' . $url);
             if ($config['dateFrom'] === 'today') {
                 $dateFrom = Carbon::today()->toDateString();
                 $dateTo = '';
@@ -74,6 +77,7 @@ class Parsing extends Command
                 $pageData = $this->getData($url, $page, $dateFrom, $dateTo);
                 ProcessData::dispatch($pageData['data'],$config['model'],$config['request']);
             }
+            $this->line('Parsing data finished');
         }
 
     }
@@ -81,18 +85,16 @@ class Parsing extends Command
     public function getData($url, $page , $dateFrom, $dateTo)
     {
         do{
-                $response = Http::get($url, [
-                    'dateFrom' => $dateFrom,
-                    'dateTo' => $dateTo,
-                    'page' => $page,
-                    'key' => $this->key,
-                    'limit' => 500
-                ]);
+            $response = Http::get($url, [
+                'dateFrom' => $dateFrom,
+                'dateTo' => $dateTo,
+                'page' => $page,
+                'key' => $this->key,
+                'limit' => 500
+            ]);
 
-                if ($response->status() != 200)
-                {
-                    dump($response->status());
-                }
+            $this->line("API request made to: {$url}");
+            $this->line("Response status: {$response->status()}");
         }
         while ($response->status() != 200);
         return $response->json();
