@@ -23,7 +23,7 @@ class TokenType extends Model
         return $this->hasMany(Token::class);
     }
 
-    public function service(): BelongsTo
+    public function apiService(): BelongsTo
     {
         return $this->belongsTo(ApiService::class);
     }
