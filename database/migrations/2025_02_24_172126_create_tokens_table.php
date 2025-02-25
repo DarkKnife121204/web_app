@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('account_id')->constrained('accounts');
             $table->foreignId('token_type_id')->constrained('token_types');
-            $table->string('token_value')->unique();
+            $table->string('token_value');
             $table->timestamps();
         });
     }
