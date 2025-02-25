@@ -2,29 +2,21 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Account;
 use Illuminate\Console\Command;
 
 class AddAccount extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'app:add-account';
+    protected $signature = 'AddAccount {company_id} {username} {description}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
+    protected $description = 'Command add account';
 
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
-        //
+        Account::create([
+            'company_id' => $this->argument('company_id'),
+            'username' => $this->argument('username'),
+            'description' => $this->argument('description')
+        ]);
     }
 }

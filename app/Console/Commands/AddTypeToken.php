@@ -2,29 +2,20 @@
 
 namespace App\Console\Commands;
 
+use App\Models\TokenType;
 use Illuminate\Console\Command;
 
 class AddTypeToken extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'app:add-type-token';
+    protected $signature = 'AddTypeToken {type} {service_id}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
+    protected $description = 'Command add type token';
 
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
-        //
+        TokenType::create([
+            'type' => $this->argument('type'),
+            'service_id' => $this->argument('service_id')
+        ]);
     }
 }

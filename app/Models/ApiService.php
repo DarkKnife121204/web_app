@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ApiService extends Model
@@ -16,8 +17,8 @@ class ApiService extends Model
         'name'
     ];
 
-    public function tokenType(): HasOne
+    public function tokenType(): HasMany
     {
-        return $this->hasOne(TokenType::class);
+        return $this->hasMany(TokenType::class);
     }
 }

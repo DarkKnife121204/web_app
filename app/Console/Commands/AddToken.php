@@ -2,29 +2,21 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Token;
 use Illuminate\Console\Command;
 
 class AddToken extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'app:add-token';
+    protected $signature = 'AddToken {account_id} {token_type_id} {token_value}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
+    protected $description = 'Command add token';
 
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
-        //
+        Token::create([
+            'account_id' => $this->argument('account_id'),
+            'token_type_id' => $this->argument('token_type_id'),
+            'token_value' => $this->argument('token_value')
+        ]);
     }
 }

@@ -2,29 +2,17 @@
 
 namespace App\Console\Commands;
 
+use App\Models\ApiService;
 use Illuminate\Console\Command;
 
 class AddApiService extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'app:add-api-service';
+    protected $signature = 'AddApiService {name}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
+    protected $description = 'Command add api service';
 
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
-        //
+        ApiService::create($this->argument('name'));
     }
 }

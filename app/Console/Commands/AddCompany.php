@@ -2,29 +2,22 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Company;
 use Illuminate\Console\Command;
 
 class AddCompany extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'app:add-company';
+    protected $signature = 'AddCompany {title} {address} {description} {number_staff}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
+    protected $description = 'Command add company';
 
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
-        //
+        Company::create([
+            'title' => $this->argument('title'),
+            'address' => $this->argument('address'),
+            'description' => $this->argument('description'),
+            'number_staff' => $this->argument('number_staff'),
+        ]);
     }
 }
